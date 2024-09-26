@@ -10,8 +10,8 @@ function Products() {
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
-        const response = await axios.get("http://localhost:8080/api/products");
-        console.log(response.data);
+        const response = await axios.get("http://localhost:8080/api/product");
+        // console.log(response.data);
         setData(response.data);
       }
       catch(error)
@@ -23,9 +23,10 @@ function Products() {
   },[]);
   return (
     <div className={styles.ProductContainer}>
-      {data.map(d => 
-        <Product key={d.id} {...d}/>
-      )}
+      {data.map(d => {
+        if(d.available)
+          return <Product key={d.id} {...d}/>
+      })}
     </div>
   )
 }

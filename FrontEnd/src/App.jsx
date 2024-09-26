@@ -1,14 +1,18 @@
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar'
-import Product from './Components/Product/Product'
 import Products from './Components/Products/Products'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ViewProduct from './Components/ViewProduct/ViewProduct';
 
 function App() {
   return (
-    <>
+    <Router>
       <Navbar/>
-      <Products/>
-    </>
+        <Routes>
+          <Route path='/' element={<Products/>}></Route>
+          <Route path="/:a" element={<ViewProduct/>}></Route>
+        </Routes>
+    </Router>
   )
 }
 

@@ -17,7 +17,7 @@
 .ulItem{
     display: flex;
     justify-content: space-around;
-    width: 350px;
+    width: 500px;
     list-style-type: none;
 }
 

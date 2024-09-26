@@ -7,8 +7,35 @@
     cursor: pointer;
     transition: 0.5s ease;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .box:hover{
     transform: translateY(-10px);
+}
+
+.boxDown{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.boxDown button{
+    cursor: pointer;
+}
+
+.name{
+    color: rgba(141, 255, 71, 0.785);
+    font-size: 20px;
+}
+
+.brand{
+    color:rgb(21, 82, 236);
+}
+
+.aTag{
+    text-decoration: none;
 }

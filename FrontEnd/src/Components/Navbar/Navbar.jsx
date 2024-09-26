@@ -26,6 +26,8 @@ function Navbar() {
             <li><button>Home</button></li>
             <li><button>Add Product</button></li>
             <li><button>Contact Us</button></li>
+            <li><button>Liked</button></li>
+            <li><button>Cart</button></li>
             <li><button onClick={()=>changeTheme()}></button></li>
         </ul>
     </div>
