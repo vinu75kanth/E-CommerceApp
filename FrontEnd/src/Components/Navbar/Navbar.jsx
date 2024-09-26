@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Navbar.module.css'
-
-
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [theme,setTheme] = useState("Grey");
@@ -23,7 +22,7 @@ function Navbar() {
     <div className={styles.navbar}>
         <p id="title">Designed By VINU</p>
         <ul className={styles.ulItem}>
-            <li><button>Home</button></li>
+            <li><Link to="/"><button>Home</button></Link></li>
             <li><button>Add Product</button></li>
             <li><button>Contact Us</button></li>
             <li><button>Liked</button></li>

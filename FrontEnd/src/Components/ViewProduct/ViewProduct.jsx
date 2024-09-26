@@ -18,22 +18,22 @@ function ViewProduct() {
     <div className={styles.container}>
         <div className={styles.imgContainer}></div>
         <div className={styles.textContainer}>
-        <div className={styles.boxTop}>
-          <p className={styles.name}>{fetchedData.name}</p>
-          <p className={styles.brand}>{fetchedData.brand}</p>
-          <br/>
-          <p>{fetchedData.category}</p>
-          <hr/>
-          <br/>
-          <p>{fetchedData.description}</p>
-        </div>
-        <div className={styles.boxDown}>
-          <p>Rs {fetchedData.price}</p>
-          <div>
-            <button>Add to cart</button>
-            <button>Like</button>
-          </div>
-        </div>
+            <div className={styles.boxTop}>
+            <p className={styles.name}>{fetchedData.name}</p>
+            <p className={styles.brand}>{fetchedData.brand}</p>
+            <br/>
+            <p>{fetchedData.category}</p>
+            <hr/>
+            <br/>
+            <p>{fetchedData.description}</p>
+            </div>
+            <div className={styles.boxDown}>
+            <p>Rs {fetchedData.price}</p>
+            <div>
+                <button>Add to cart</button>
+                <button>Like</button>
+            </div>
+            </div>
         </div>
     </div>
   )

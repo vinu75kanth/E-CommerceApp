@@ -14,4 +14,14 @@
 
 .textContainer{
     padding: 10px;
+    color: white;
+}
+
+.name{
+    color: rgba(141, 255, 71, 0.785);
+    font-size: 20px;
+}
+
+.brand{
+    color:rgb(21, 82, 236);
 }
