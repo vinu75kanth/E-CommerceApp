@@ -1,0 +1,120 @@
+.formBox{
+    margin: 0px 10%;
+    margin-top: 100px;
+    display: flex;
+    font-size: 20px;
+    border: 2px solid;
+}
+
+.formBox input{
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 2px;
+    padding-left: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.individualDiv{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.fifty{
+    flex-basis: 48%;
+}
+
+.fifty input{
+    width: 96%;
+}
+
+.hundred{
+    display: flex;
+    flex-direction: column;
+}
+
+.hundred input{
+    width: 98%;
+}
+
+.thirty{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 30%;
+}
+
+.thirty input{
+    width: 93%;
+}
+
+.margining{
+    margin: 10px;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.submitBtn{
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 25px;
+    outline: none;
+    background: white;
+    position: relative;
+    z-index: 1;
+}
+
+.submitBtn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: hsl(208, 92%, 53%);
+    border-radius: 10px;
+    z-index : -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: 0.5s ease;
+}
+
+.submitBtn:hover::before{
+    transition: 0.5s ease;
+    transform: scaleX(1);
+}
+
+#checkox{
+    accent-color: blue;
+}
+
+.down{
+    display: flex;
+    flex-direction: column;
+}
+
+.down select{
+    width: 98%;
+    font-size: 20px;
+    padding: 2px;
+}
+
+.file{
+    color: white;
+}
+
+input[type="file"]::file-selector-button {
+    border-radius: 10px;
+    padding: 2px;
+}

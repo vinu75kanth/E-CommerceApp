@@ -23,7 +23,7 @@ function Navbar() {
         <p id="title">Designed By VINU</p>
         <ul className={styles.ulItem}>
             <li><Link to="/"><button>Home</button></Link></li>
-            <li><button>Add Product</button></li>
+            <li><Link to="/addProduct"><button>Add Product</button></Link></li>
             <li><button>Contact Us</button></li>
             <li><button>Liked</button></li>
             <li><button>Cart</button></li>

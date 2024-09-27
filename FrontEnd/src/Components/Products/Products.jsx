@@ -6,27 +6,34 @@ import axios from 'axios';
 function Products() {
 
   const [data,setData] = useState([]);
+  const [isError,SetIsError] = useState(false);
   
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
         const response = await axios.get("http://localhost:8080/api/product");
-        // console.log(response.data);
         setData(response.data);
       }
       catch(error)
       {
         console.warn(error);
+        SetIsError(true);
       }
     }
     fetchData();
   },[]);
   return (
     <div className={styles.ProductContainer}>
-      {data.map(d => {
-        if(d.available)
-          return <Product key={d.id} {...d}/>
-      })}
+      {
+        isError ? <><p className={styles.errorMsg}>Connection Refused<br/>
+                          Probably Due to Back End Not Started!!!</p> 
+                  </>
+          :
+          data.map(d => {
+            if(d.available)
+              return <Product key={d.id} {...d}/>
+          })
+      }
     </div>
   )
 }

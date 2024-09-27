@@ -3,3 +3,10 @@
     margin-top: 100px;
     display: flex;
 }
+
+.errorMsg{
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+    color: white;
+}
