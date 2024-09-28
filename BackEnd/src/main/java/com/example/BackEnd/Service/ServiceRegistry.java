@@ -24,4 +24,8 @@ public class ServiceRegistry {
     public Product getProductById(int id) {
         return repo.findById(id).orElse(null);
     }
+
+    public void addProduct(Product product) {
+        repo.save(product);
+    }
 }

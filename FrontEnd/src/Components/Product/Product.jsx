@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 function Product(props) {
   const {
     id,
-    name,
+    name,   
     description,
     brand,
     price,

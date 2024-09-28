@@ -1,7 +1,8 @@
 .ProductContainer{
     margin: 0px 10%;
     margin-top: 100px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
 }
 
 .errorMsg{
