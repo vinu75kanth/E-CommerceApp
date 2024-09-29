@@ -31,7 +31,14 @@ function AddProduct() {
     const handleSubmit = (e)=>{
       e.preventDefault();
 
-      axios.post("http://localhost:8080/api/product",newData);
+      axios.post("http://localhost:8080/api/product",newData)
+        .then(()=>{
+          window.alert('produt added successfully');
+        })
+        .catch(e=>{
+          console.log('error : ',e);
+          window.alert('error adding produt');
+        });
     }
 
     const handleCheckboxChange = (e)=>{

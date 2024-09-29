@@ -25,3 +25,10 @@
 .brand{
     color:rgb(21, 82, 236);
 }
+
+.btn{
+    cursor: pointer;
+    font-size: 20px;
+    margin: 2px;   
+    padding: 2px; 
+}
