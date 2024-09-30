@@ -15,6 +15,9 @@
 .textContainer{
     padding: 10px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .name{
@@ -31,4 +34,13 @@
     font-size: 20px;
     margin: 2px;   
     padding: 2px; 
+}
+
+.Ubtn{
+    cursor: pointer;
+    font-size: 20px;
+    margin: 2px;   
+    padding: 2px; 
+    background: rgba(141, 255, 71, 0.419);
+    color: white;   
 }

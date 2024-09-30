@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './AddProduct.module.css'
 import axios from 'axios';
 
-function AddProduct() {
-
+function AddProduct(props) {
+  const [updation,setUpdation] = useState(false);
   const[newData,SetNewData] = useState(
     {
       id : '',
@@ -17,7 +17,12 @@ function AddProduct() {
       quantity : ''
     });
 
-    const [image,setImage] = useState(null);
+    useEffect(() => {
+      if (Object.keys(props).length > 0 && props.constructor === Object) {
+        SetNewData(props);
+        setUpdation(true);
+      }
+    }, [props]);
 
     const handleChange = (e)=>{
       const {name,value} = e.target;
@@ -31,14 +36,19 @@ function AddProduct() {
     const handleSubmit = (e)=>{
       e.preventDefault();
 
-      axios.post("http://localhost:8080/api/product",newData)
-        .then(()=>{
-          window.alert('produt added successfully');
-        })
-        .catch(e=>{
-          console.log('error : ',e);
-          window.alert('error adding produt');
-        });
+      if(updation){
+        //to continue
+      }
+      else{
+        axios.post("http://localhost:8080/api/product",newData)
+          .then(()=>{
+            window.alert('produt added successfully');
+          })
+          .catch(e=>{
+            console.log('error : ',e);
+            window.alert('error adding produt');
+          });
+      }
     }
 
     const handleCheckboxChange = (e)=>{
