@@ -28,4 +28,8 @@ public class ServiceRegistry {
     public void addProduct(Product product) {
         repo.save(product);
     }
+
+    public void updateProduct(Product product) {
+        repo.save(product);
+    }
 }

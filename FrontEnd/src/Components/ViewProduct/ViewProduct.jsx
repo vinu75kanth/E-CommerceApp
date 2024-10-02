@@ -30,6 +30,9 @@ function ViewProduct() {
                 </div>
                 <div className={styles.boxDown}>
                     <p>Rs {fetchedData.price}</p>
+                    <br/>
+                    <p>Stock Available : {fetchedData.quantity}</p>
+                    <br/>
                     <div>
                         <button className={styles.btn}>Add to cart</button>
                         <button className={styles.btn}>Like</button>

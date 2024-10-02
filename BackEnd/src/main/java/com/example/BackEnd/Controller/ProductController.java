@@ -36,6 +36,13 @@ public class ProductController {
 
     @PostMapping("/product")
     public void addProduct(@RequestBody Product product) {
+        System.out.println(product);
         service.addProduct(product);
+    }
+
+    @PutMapping("/updateProduct")
+    public void updateProduct(@RequestBody Product product) {
+        System.out.println(product);
+        service.updateProduct(product);
     }
 }

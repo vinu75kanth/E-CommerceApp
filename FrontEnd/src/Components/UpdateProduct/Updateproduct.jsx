@@ -6,7 +6,6 @@ import axios from 'axios';
 
 function Updateproduct() {
     const {id} = useParams();
-    console.log(id);
 
     const [productData, setProductData] = useState({});
     useEffect(()=>{
@@ -19,7 +18,6 @@ function Updateproduct() {
         };
         fetchData();
     },[id]);
-    console.log("update");
   return (
     <>
         {(Object.keys(productData).length === 0)? <></> : <AddProduct {...productData}/>}
