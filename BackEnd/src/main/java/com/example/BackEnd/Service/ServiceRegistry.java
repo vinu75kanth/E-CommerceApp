@@ -31,5 +31,6 @@ public class ServiceRegistry {
 
     public void updateProduct(Product product) {
         repo.save(product);
+        //git streak
     }
 }
