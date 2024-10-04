@@ -37,10 +37,12 @@ function AddProduct(props) {
       e.preventDefault();
 
       if(updation){
-        axios.put("http://localhost:8080/api/updateProduct",newData);
+        axios.put("http://localhost:8080/api/updateProduct",newData)
+        .catch(e=>{
+          window.alert("some error occurred")
+        });
       }
       else{
-        console.log(newData);
         axios.post("http://localhost:8080/api/product",newData)
           .then(()=>{
             window.alert('produt added successfully');

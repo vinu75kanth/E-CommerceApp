@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from './ViewProduct.module.css'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function ViewProduct() {
+
+    const navigate = useNavigate();
+
     const {a} = useParams();
     const [fetchedData,SetData] = useState({});
     useEffect(()=>{
@@ -14,6 +17,21 @@ function ViewProduct() {
         };
         fetchData();
     },[])
+
+    const handleDelete=()=>{
+        const deleteProduct = async ()=>{
+            const response = await axios.delete(`http://localhost:8080/api/deleteproduct/${a}`)
+            .then(()=>{
+                window.alert("Product Deleted");
+                navigate("/..");
+            })
+            .catch(e=>{
+                window.alert("error occurred while deleteing data");
+                console.error(e);
+            });
+        }
+        deleteProduct();
+    }
   return (
     <div className={styles.container}>
         <div className={styles.imgContainer}></div>
@@ -41,7 +59,7 @@ function ViewProduct() {
             </div>
             <div className={styles.down}>
                 <Link to={`/update/${a}`}><button className={styles.Ubtn}>Update</button></Link>
-                <button className={styles.Ubtn}>Delete</button>
+                <button className={styles.Ubtn} onClick={()=>handleDelete()}>Delete</button>
             </div>
         </div>
     </div>

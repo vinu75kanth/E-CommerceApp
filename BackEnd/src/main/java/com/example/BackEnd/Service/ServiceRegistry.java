@@ -31,6 +31,9 @@ public class ServiceRegistry {
 
     public void updateProduct(Product product) {
         repo.save(product);
-        //git streak
+    }
+
+    public void deleteProductByID(int id) {
+        repo.deleteById(id);
     }
 }
