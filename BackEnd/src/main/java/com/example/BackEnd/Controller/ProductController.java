@@ -19,11 +19,6 @@ public class ProductController {
         this.service = service;
     }
 
-    @RequestMapping("")
-    public String home() {
-        return "Hello World";
-    }
-
     @GetMapping("/product")
     public List<Product> getProducts() {
         return service.getAllProducts();
@@ -47,5 +42,10 @@ public class ProductController {
     @DeleteMapping("/deleteproduct/{id}")
     public void deleteProduct(@PathVariable int id) {
         service.deleteProductByID(id);
+    }
+
+    @GetMapping("/searchproduct")
+    public List<Product> getSearchProducts(String keyword) {
+        return service.searchProducts(keyword);
     }
 }

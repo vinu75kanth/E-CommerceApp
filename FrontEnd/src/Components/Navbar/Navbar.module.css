@@ -17,6 +17,7 @@
 .ulItem{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 500px;
     list-style-type: none;
 }
@@ -61,4 +62,22 @@
 .ulItem li button:not(:hover)::before {
     transform-origin: right; 
     transform: scaleX(0);
+}
+
+.searchBar{
+    display: flex;
+    background: white;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.searchBar img{
+    height: 20px;
+}
+
+.searchBar input{
+    outline: none;
+    font-size: 18px;
+    width: 150px;
+    border: none;
 }

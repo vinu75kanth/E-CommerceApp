@@ -36,4 +36,8 @@ public class ServiceRegistry {
     public void deleteProductByID(int id) {
         repo.deleteById(id);
     }
+
+    public List<Product> searchProducts(String keyword) {
+        return repo.searchProduct(keyword);
+    }
 }
