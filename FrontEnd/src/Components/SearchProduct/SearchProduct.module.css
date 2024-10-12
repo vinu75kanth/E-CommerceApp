@@ -1,0 +1,13 @@
+.ProductContainer{
+    margin: 0px 10%;
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+
+.errorMsg{
+    text-align: center;
+    width: 100%;
+    font-size: 50px;
+    color: white;
+}

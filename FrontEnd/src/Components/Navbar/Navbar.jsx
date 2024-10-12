@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext, createContext } from 'react'
 import styles from './Navbar.module.css'
 import { Link } from 'react-router-dom';
 import searchIcon from '../../assets/magnifying-glass-solid.svg';
+import {SearchContext, SearchBarContext, SearchTriggerContext} from '../../App'
 
-function Navbar() {
+
+function Navbar({setSearchBar}) {
   const [theme,setTheme] = useState("Grey");
 
-  const [searchBar,setSearchBar] = useState('');
+  const searchBar = useContext(SearchBarContext);
 
   const handleSearchBarChange = (e)=>{
     setSearchBar(e.target.value);
@@ -24,16 +26,33 @@ function Navbar() {
   useEffect(()=>{
     document.body.style.background = theme;
   },[theme])
+
+  const setSearch = useContext(SearchContext);
+  const setSearchTrigger = useContext(SearchTriggerContext);
+
+  const handleSearch = ()=>{
+    setSearchTrigger(t => !t);
+    setSearch(true);
+  }
+
+  const handleKeyDown = (e)=>{
+    if(e.key === 'Enter'){
+      handleSearch();
+    }
+  }
   
   return (
     <div className={styles.navbar}>
         <p id="title">Designed By VINU</p>
         <ul className={styles.ulItem}>
-            <li><Link to="/"><button>Home</button></Link></li>
+            <li><Link to="/"><button onClick={()=>{setSearch(false)}}>Home</button></Link></li>
             <li><Link to="/addProduct"><button>Add Product</button></Link></li>
             <li><button>Liked</button></li>
             <li><button>Cart</button></li>
-            <div className={styles.searchBar}><input type='text' value={searchBar} onChange={handleSearchBarChange}/><img src={searchIcon}/></div>
+            <div className={styles.searchBar}>
+              <input type='text' value={searchBar} onChange={handleSearchBarChange} onKeyDown={handleKeyDown}/>
+              <img src={searchIcon} onClick={handleSearch}/>
+            </div>
             <li><button onClick={()=>changeTheme()}></button></li>
         </ul>
     </div>
