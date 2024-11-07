@@ -10,14 +10,20 @@ function Products() {
   
   useEffect(()=>{
     const fetchData = async ()=>{
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW51IiwiaWF0IjoxNzMwOTYwMjg3LCJleHAiOjE3MzA5NjIwODd9.ilDhX8LWdZ759inw5_32HazOkBVkY4PqrrRoZ04BNbA";
       try{
-        const response = await axios.get("http://localhost:8080/api/product");
+        const response = await axios.get("http://localhost:8080/api/product", {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+          }
+        );
         setData(response.data);
       }
       catch(error)
       {
-        console.warn(error);
-        SetIsError(true);
+        console.error(error);
       }
     }
     fetchData();
