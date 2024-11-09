@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api")
-@CrossOrigin
 public class ProductController {
 
     private ServiceRegistry service;
@@ -24,6 +24,7 @@ public class ProductController {
         return "Welcome Folks";
     }
 
+//    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/product")
     public List<Product> getProducts() {
         return service.getAllProducts();

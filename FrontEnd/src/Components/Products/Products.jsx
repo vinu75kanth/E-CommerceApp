@@ -13,17 +13,17 @@ function Products() {
       const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW51IiwiaWF0IjoxNzMwOTYwMjg3LCJleHAiOjE3MzA5NjIwODd9.ilDhX8LWdZ759inw5_32HazOkBVkY4PqrrRoZ04BNbA";
       try{
         const response = await axios.get("http://localhost:8080/api/product", {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
+          headers: { 
+            'Authorization' : `Bearer ${token}`,
+            'Access-Control-Allow-Origin' : `http://localhost:5173`
           }
-          }
-        );
+        });
         setData(response.data);
       }
       catch(error)
       {
         console.error(error);
+        SetIsError(true);
       }
     }
     fetchData();
@@ -31,7 +31,7 @@ function Products() {
   return (
     <div className={styles.ProductContainer}>
       {
-        isError ? <><p className={styles.errorMsg}>Connection Refused<br/>
+        isError ? <><p className={styles.errorMsg}>Connection Refused!!!<br/>
                           Probably Due to Back End Not Started!!!</p> 
                   </>
           :
