@@ -8,20 +8,7 @@ function Products() {
   const [data,setData] = useState([]);
   const [isError,SetIsError] = useState(false);
   
-  useEffect(()=>{
-    const fetchData = async ()=>{
-      try{
-        const response = await axios.get("http://localhost:8080/api/product");
-        setData(response.data);
-      }
-      catch(error)
-      {
-        console.error(error);
-        SetIsError(true);
-      }
-    }
-    fetchData();
-  },[]);
+  
   return (
     <div className={styles.ProductContainer}>
       {

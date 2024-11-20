@@ -1,13 +1,18 @@
 package com.example.BackEnd.Service;
 
+import com.example.BackEnd.CustomException;
 import com.example.BackEnd.Module.MyUsers;
 import com.example.BackEnd.Repository.UserRepo;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class UserService {
@@ -16,6 +21,7 @@ public class UserService {
     private UserRepo userRepo;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10);
     private JwtService jwtService;
+    private HttpServletResponse response;
 
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
@@ -32,19 +38,29 @@ public class UserService {
         this.jwtService = jwtService;
     }
 
-    public String verify(MyUsers user) {
+    @Autowired
+    public void setResponse(HttpServletResponse response) {
+        this.response = response;
+    }
+
+    public void verify(MyUsers user){
         try{
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
             );
             if(authentication.isAuthenticated()){
-                return jwtService.generateToken(user.getUsername());
+                Cookie cookie = new Cookie("token",jwtService.generateToken(user.getUsername()));
+                cookie.setPath("/");
+                cookie.setHttpOnly(true);
+                cookie.setMaxAge(120);
+                response.addCookie(cookie);
             }
         }
         catch(Exception e){
-            return "Wrong Username or Password";
+            response.setStatus(403);
+            throw new CustomException(e.getMessage());
+            //response.sendError(401,"Login again");
         }
-        return "error 404";
     }
 
     public String registerUser(MyUsers user) {

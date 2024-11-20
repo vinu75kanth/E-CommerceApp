@@ -1,5 +1,6 @@
 package com.example.BackEnd.Config;
 
+import com.example.BackEnd.CustomException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,5 +15,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .body("token expired, login again");
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<String> handleCustomException(CustomException e) {
+        return ResponseEntity
+                .status(403)
+                .body("invalid credentials da punda");
     }
 }

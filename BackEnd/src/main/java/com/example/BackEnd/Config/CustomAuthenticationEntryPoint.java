@@ -21,7 +21,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         response.setContentType("application/json");
         Map<String, Object> data = new HashMap<>();
         data.put("message", "Unauthorized");
-        data.put("status", "JWT token expired");
+        data.put("status", "jwt expired da punda");
         ObjectMapper mapper = new ObjectMapper();
         response.getOutputStream().println(mapper.writeValueAsString(data));
     }

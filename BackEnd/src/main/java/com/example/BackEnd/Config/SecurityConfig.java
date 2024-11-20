@@ -1,5 +1,6 @@
 package com.example.BackEnd.Config;
 
+import com.example.BackEnd.Filter.FirstFilter;
 import com.example.BackEnd.Filter.JwtFilter;
 import com.example.BackEnd.Service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -26,6 +28,7 @@ public class SecurityConfig {
 
     private MyUserDetailsService userDetailsService;
     private JwtFilter jwtFilter;
+    private FirstFilter firstFilter;
     private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Autowired
@@ -43,6 +46,11 @@ public class SecurityConfig {
         this.authenticationEntryPoint = authenticationEntryPoint;
     }
 
+    @Autowired
+    public void setFirstFilter(FirstFilter firstFilter) {
+        this.firstFilter = firstFilter;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -53,6 +61,7 @@ public class SecurityConfig {
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(firstFilter, LogoutFilter.class)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(e -> e.authenticationEntryPoint(authenticationEntryPoint))
                 .build();
