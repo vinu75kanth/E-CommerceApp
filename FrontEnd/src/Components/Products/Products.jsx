@@ -10,14 +10,8 @@ function Products() {
   
   useEffect(()=>{
     const fetchData = async ()=>{
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aW51IiwiaWF0IjoxNzMwOTYwMjg3LCJleHAiOjE3MzA5NjIwODd9.ilDhX8LWdZ759inw5_32HazOkBVkY4PqrrRoZ04BNbA";
       try{
-        const response = await axios.get("http://localhost:8080/api/product", {
-          headers: { 
-            'Authorization' : `Bearer ${token}`,
-            'Access-Control-Allow-Origin' : `http://localhost:5173`
-          }
-        });
+        const response = await axios.get("http://localhost:8080/api/product");
         setData(response.data);
       }
       catch(error)

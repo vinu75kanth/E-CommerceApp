@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,7 @@ public class SecurityConfig {
 
     private MyUserDetailsService userDetailsService;
     private JwtFilter jwtFilter;
+    private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Autowired
     public void setUserDetailService(MyUserDetailsService userDetailsService) {
@@ -36,6 +38,11 @@ public class SecurityConfig {
         this.jwtFilter = jwtFilter;
     }
 
+    @Autowired
+    public void setAuthenticationEntryPoint(CustomAuthenticationEntryPoint authenticationEntryPoint) {
+        this.authenticationEntryPoint = authenticationEntryPoint;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -44,10 +51,10 @@ public class SecurityConfig {
                         request
                                 .requestMatchers("api/login","api/register").permitAll()
                                 .anyRequest().authenticated())
-//                .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(e -> e.authenticationEntryPoint(authenticationEntryPoint))
                 .build();
     }
 
