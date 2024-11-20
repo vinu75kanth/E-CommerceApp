@@ -53,6 +53,7 @@ function Navbar({setSearchBar}) {
               <input type='text' value={searchBar} onChange={handleSearchBarChange} onKeyDown={handleKeyDown}/>
               <img src={searchIcon} onClick={handleSearch}/>
             </div>
+            <li><Link to="/login"><button>Login</button></Link></li>
             <li><button onClick={()=>changeTheme()}></button></li>
         </ul>
     </div>

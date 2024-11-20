@@ -6,7 +6,7 @@ import axios from 'axios';
 function Products() {
 
   const [data,setData] = useState([]);
-  const [isError,SetIsError] = useState(false);
+  const [isError,SetIsError] = useState(true);
   
   
   return (

@@ -6,6 +6,7 @@ import ViewProduct from './Components/ViewProduct/ViewProduct';
 import AddProduct from './Components/AddProduct/AddProduct';
 import Updateproduct from './Components/UpdateProduct/Updateproduct';
 import SearchProduct from './Components/SearchProduct/SearchProduct';
+import LoginSignUp from './Components/LoginPage/LoginPage';
 
 export const SearchContext = createContext();
 export const SearchBarContext = createContext();
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/:a" element={<ViewProduct/>}></Route>
                 <Route path="/addProduct" element={<AddProduct/>}></Route>
                 <Route path="/update/:id" element={<Updateproduct/>}></Route>
+                <Route path="/login" element={<LoginSignUp/>}></Route>
               </Routes>
           </Router>
         </SearchTriggerContext.Provider>
