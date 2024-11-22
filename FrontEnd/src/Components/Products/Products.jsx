@@ -6,7 +6,21 @@ import axios from 'axios';
 function Products() {
 
   const [data,setData] = useState([]);
-  const [isError,SetIsError] = useState(true);
+  const [isError,SetIsError] = useState(false);
+
+  useEffect(()=>{
+    async function fetch(){
+      try{
+        const res = await axios.get('http://localhost:8080/api/product');
+        setData(res.data);
+      }
+      catch(err){
+        console.log(err);
+        SetIsError(true);
+      }
+    }
+    fetch();
+  },[]);
   
   
   return (

@@ -28,12 +28,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 25px;
+}
+.right button{
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 2px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 .namepd{
     display: flex;
     flex-direction: column;
 }
+.namepd label{
+    font-size: 20px;
+}
 .namepd input{
+    font-size: 18px;
     min-width: 350px;
     padding: 5px;
     margin: 5px;
@@ -43,6 +56,7 @@
     background: hsla(0, 0%, 50%, 0.177);
 } 
 .loginbtn{
+    font-size: 20px;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;

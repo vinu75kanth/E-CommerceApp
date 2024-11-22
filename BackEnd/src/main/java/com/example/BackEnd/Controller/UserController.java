@@ -23,7 +23,11 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public String register(@RequestBody MyUsers user){
-        return userService.registerUser(user);
+    public void register(@RequestBody MyUsers user){
+        MyUsers temp = new MyUsers();
+        temp.setUsername(user.getUsername());
+        temp.setPassword(user.getPassword());
+        userService.registerUser(user);
+        userService.verify(temp);
     }
 }

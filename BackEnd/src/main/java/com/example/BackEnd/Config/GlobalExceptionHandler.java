@@ -21,6 +21,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleCustomException(CustomException e) {
         return ResponseEntity
                 .status(403)
-                .body("invalid credentials da punda");
+                .body(e.getMessage());
     }
 }

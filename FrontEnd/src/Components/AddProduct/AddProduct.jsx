@@ -101,10 +101,10 @@ function AddProduct(props) {
               <label>Release Date</label>
               <input type='date' name='releaseDate' value={newData.releaseDate} onChange={handleChange}></input>
             </div>
-            <div className={styles.thirty}>
+            {/* <div className={styles.thirty}>
               <label>Image</label>
               <input type='file' className={styles.file} accept="images/png, images/jpg" onChange={handleImageChange}></input>
-            </div>
+            </div> */}
           </div>
           <div className={styles.margining}>
             <input type='checkbox' id={styles.checkox} checked={newData.available} onChange={handleCheckboxChange}></input>

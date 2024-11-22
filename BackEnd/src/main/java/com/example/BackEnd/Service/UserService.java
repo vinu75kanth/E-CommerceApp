@@ -59,13 +59,15 @@ public class UserService {
         catch(Exception e){
             response.setStatus(403);
             throw new CustomException(e.getMessage());
-            //response.sendError(401,"Login again");
         }
     }
 
-    public String registerUser(MyUsers user) {
+    public void registerUser(MyUsers user) {
+        MyUsers userExisting  = userRepo.findByUsername(user.getUsername());
+        if(userExisting != null){
+            throw new CustomException("UserName Taken");
+        }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        MyUsers ans =  userRepo.save(user);
-        return (ans == null) ? "re-try" : "success";
+        userRepo.save(user);
     }
 }

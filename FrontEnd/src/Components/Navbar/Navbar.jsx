@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, createContext } from 'react'
 import styles from './Navbar.module.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import searchIcon from '../../assets/magnifying-glass-solid.svg';
 import {SearchContext, SearchBarContext, SearchTriggerContext} from '../../App'
 
@@ -9,6 +9,8 @@ function Navbar({setSearchBar}) {
   const [theme,setTheme] = useState("Grey");
 
   const searchBar = useContext(SearchBarContext);
+
+  const navigate = useNavigate();
 
   const handleSearchBarChange = (e)=>{
     setSearchBar(e.target.value);
@@ -25,6 +27,7 @@ function Navbar({setSearchBar}) {
 
   useEffect(()=>{
     document.body.style.background = theme;
+    navigate('/login');
   },[theme])
 
   const setSearch = useContext(SearchContext);
