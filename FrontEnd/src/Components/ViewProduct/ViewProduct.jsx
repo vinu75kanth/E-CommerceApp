@@ -57,10 +57,10 @@ function ViewProduct() {
                     </div>
                 </div>
             </div>
-            <div className={styles.down}>
+            {/* <div className={styles.down}>
                 <Link to={`/update/${a}`}><button className={styles.Ubtn}>Update</button></Link>
                 <button className={styles.Ubtn} onClick={()=>handleDelete()}>Delete</button>
-            </div>
+            </div> */}
         </div>
     </div>
   )

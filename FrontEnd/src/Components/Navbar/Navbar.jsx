@@ -49,7 +49,7 @@ function Navbar({setSearchBar}) {
         <p id="title">Designed By VINU</p>
         <ul className={styles.ulItem}>
             <li><Link to="/"><button onClick={()=>{setSearch(false)}}>Home</button></Link></li>
-            <li><Link to="/addProduct"><button>Add Product</button></Link></li>
+            {/* <li><Link to="/addProduct"><button>Add Product</button></Link></li> */}
             <li><button>Liked</button></li>
             <li><button>Cart</button></li>
             <div className={styles.searchBar}>

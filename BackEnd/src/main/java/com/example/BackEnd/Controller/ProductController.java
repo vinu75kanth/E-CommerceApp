@@ -24,7 +24,6 @@ public class ProductController {
         return "Welcome Folks";
     }
 
-//    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/product")
     public List<Product> getProducts() {
         return service.getAllProducts();
@@ -53,5 +52,15 @@ public class ProductController {
     @GetMapping("/searchproduct")
     public List<Product> getSearchProducts(String keyword) {
         return service.searchProducts(keyword);
+    }
+
+    @PostMapping("/cart")
+    public void addToCart(@CookieValue("token") String token,int prod_id) {
+        service.addToCart(token,prod_id);
+    }
+
+    @GetMapping("/cart")
+    public List<Product> getCart(@CookieValue("token") String token) {
+        return service.getProductInCart(token);
     }
 }
