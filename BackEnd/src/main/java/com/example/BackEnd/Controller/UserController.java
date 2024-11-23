@@ -24,10 +24,11 @@ public class UserController {
 
     @PostMapping("register")
     public void register(@RequestBody MyUsers user){
-        MyUsers temp = new MyUsers();
-        temp.setUsername(user.getUsername());
-        temp.setPassword(user.getPassword());
         userService.registerUser(user);
-        userService.verify(temp);
     }
+
+//    @PostMapping("deleteUser")
+//    public void deleteUser(@CookieValue("token") String token) {
+//        userService.deleteUser(token);
+//    }
 }

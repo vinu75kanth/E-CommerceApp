@@ -5,6 +5,7 @@ import com.example.BackEnd.Module.MyUsers;
 import com.example.BackEnd.Repository.UserRepo;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,6 +46,7 @@ public class UserService {
 
     public void verify(MyUsers user){
         try{
+            user.setUsername(user.getUsername().toLowerCase());
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
             );
@@ -63,11 +65,22 @@ public class UserService {
     }
 
     public void registerUser(MyUsers user) {
-        MyUsers userExisting  = userRepo.findByUsername(user.getUsername());
-        if(userExisting != null){
+        user.setUsername(user.getUsername().toLowerCase());
+        MyUsers temp = new MyUsers();
+        temp.setUsername(user.getUsername());
+        temp.setPassword(user.getPassword());
+        MyUsers userExisting = userRepo.findByUsername(user.getUsername());
+        if (userExisting != null) {
             throw new CustomException("UserName Taken");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepo.save(user);
+        verify(temp);
     }
+
+//    @Transactional
+//    public void deleteUser(String token) {
+//        String username = jwtService.extractUserName(token);
+//        userRepo.deleteByUsername(username);
+//    }
 }

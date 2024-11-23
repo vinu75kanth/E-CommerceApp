@@ -47,7 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
         String authHeader = request.getHeader("Authorization");
-        if(token == null && authHeader != null && authHeader.startsWith("Bearer ")){
+        if(token == null && authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
         }
         String username = null;
@@ -66,6 +66,7 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         }
         catch (ExpiredJwtException e) {
+            System.out.println(e.getMessage());
             throw e;
         }
 

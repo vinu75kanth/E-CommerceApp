@@ -20,8 +20,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json");
         Map<String, Object> data = new HashMap<>();
-        data.put("message", "Unauthorized");
-        data.put("status", "jwt expired da punda");
+        data.put("message", "Error occured login again");
+//        response.sendRedirect("/login");
         ObjectMapper mapper = new ObjectMapper();
         response.getOutputStream().println(mapper.writeValueAsString(data));
     }

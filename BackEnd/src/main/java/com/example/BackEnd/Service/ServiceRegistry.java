@@ -1,5 +1,6 @@
 package com.example.BackEnd.Service;
 
+import com.example.BackEnd.CustomException;
 import com.example.BackEnd.Module.Cart;
 import com.example.BackEnd.Module.MyUsers;
 import com.example.BackEnd.Module.Product;
@@ -67,21 +68,25 @@ public class ServiceRegistry {
     public void addToCart(String token, int prod_id) {
         String username = jwtService.extractUserName(token);
         MyUsers user = userRepo.findByUsername(username);
+        Product product = getProductById(prod_id);
+        Cart isExisting = cartRepo.findByCust_idProd_Id(user,product);
+        if(isExisting != null) {
+            throw new CustomException("Already in Cart");
+        }
         Cart cart = new Cart();
-        cart.setCust_id(user.getId());
-        cart.setProd_id(prod_id);
+        cart.setMyUsers(user);
+        cart.setProduct(product);
         cartRepo.save(cart);
     }
 
     public List<Product> getProductInCart(String token) {
         String username = jwtService.extractUserName(token);
         MyUsers user = userRepo.findByUsername(username);
-        List<Cart> cart = cartRepo.findByCustomerId(user.getId());
+        List<Cart> cart = cartRepo.findByCustomerId(user);
         List<Product> products = new ArrayList<>();
 
         for(Cart cartItem : cart) {
-            Product product = repo.findById(cartItem.getProd_id()).orElse(null);
-            products.add(product);
+            products.add(cartItem.getProduct());
         }
         return products;
     }
