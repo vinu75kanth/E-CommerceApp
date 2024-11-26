@@ -55,6 +55,9 @@ public class UserService {
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
                 cookie.setMaxAge(30*60);
+//                cookie.setSecure(true);
+//                cookie.setDomain("localhost");
+//                cookie.setAttribute();
                 response.addCookie(cookie);
             }
         }

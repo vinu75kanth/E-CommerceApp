@@ -18,6 +18,8 @@ function LoginSignUp() {
         const res = await axios.post('http://localhost:8080/api/login',{
           username:name,
           password:password
+        },{
+          withCredentials:true
         })
         window.alert('User Logged In Successfully');
         navigate('../');

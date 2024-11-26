@@ -16,15 +16,17 @@ function CartLikeItems(props) {
   return (
     
     <div className={styles.container}>
-        <div className={styles.image}></div>
-        <div>
-            <p>{name}</p>
-            <p>{brand}</p>
-            {/* <p>{price}</p> */}
-            <p>{description}</p>
+        <div className={styles.content}>
+            <div className={styles.image}></div>
+            <div>
+                <p className={styles.name}>{name}</p>
+                <p className={styles.brand}>{brand}</p>
+                <br/>
+                <p className={styles.desc}>{description}</p>
+            </div>
         </div>
         <div>
-            {price}
+            Rs. {price}
         </div>
     </div>
   )
