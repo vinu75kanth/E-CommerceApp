@@ -15,7 +15,7 @@ function Product(props) {
     quantity
   } = props;
   return (
-    <Link to={`/${id}`} className={styles.aTag}>
+    <Link to={`/view/${id}`} className={styles.aTag}>
       <div className={styles.box}>
         <div className={styles.boxTop}>
           <p className={styles.name}>{name}</p>

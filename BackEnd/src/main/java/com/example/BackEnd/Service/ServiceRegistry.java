@@ -71,12 +71,14 @@ public class ServiceRegistry {
         Product product = getProductById(prod_id);
         Cart isExisting = cartRepo.findByCust_idProd_Id(user,product);
         if(isExisting != null) {
+//            System.out.println("throwing error already in cart");
             throw new CustomException("Already in Cart");
         }
         Cart cart = new Cart();
         cart.setMyUsers(user);
         cart.setProduct(product);
         cartRepo.save(cart);
+//        System.out.println("successfully added to cart");
     }
 
     public List<Product> getProductInCart(String token) {

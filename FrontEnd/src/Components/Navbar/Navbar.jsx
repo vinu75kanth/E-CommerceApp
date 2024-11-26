@@ -27,8 +27,11 @@ function Navbar({setSearchBar}) {
 
   useEffect(()=>{
     document.body.style.background = theme;
-    navigate('/login');
   },[theme])
+
+  useEffect(()=>{
+    navigate('/login');
+  },[])
 
   const setSearch = useContext(SearchContext);
   const setSearchTrigger = useContext(SearchTriggerContext);
@@ -50,8 +53,8 @@ function Navbar({setSearchBar}) {
         <ul className={styles.ulItem}>
             <li><Link to="/"><button onClick={()=>{setSearch(false)}}>Home</button></Link></li>
             {/* <li><Link to="/addProduct"><button>Add Product</button></Link></li> */}
-            <li><button>Liked</button></li>
-            <li><button>Cart</button></li>
+            <li><Link to="/liked"><button>Liked</button></Link></li>
+            <li><Link to="/cart"><button>Cart</button></Link></li>
             <div className={styles.searchBar}>
               <input type='text' value={searchBar} onChange={handleSearchBarChange} onKeyDown={handleKeyDown}/>
               <img src={searchIcon} onClick={handleSearch}/>

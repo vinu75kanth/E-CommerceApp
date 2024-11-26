@@ -54,7 +54,7 @@ public class UserService {
                 Cookie cookie = new Cookie("token",jwtService.generateToken(user.getUsername()));
                 cookie.setPath("/");
                 cookie.setHttpOnly(true);
-                cookie.setMaxAge(120);
+                cookie.setMaxAge(30*60);
                 response.addCookie(cookie);
             }
         }

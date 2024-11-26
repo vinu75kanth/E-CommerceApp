@@ -7,6 +7,7 @@ import AddProduct from './Components/AddProduct/AddProduct';
 import Updateproduct from './Components/UpdateProduct/Updateproduct';
 import SearchProduct from './Components/SearchProduct/SearchProduct';
 import LoginSignUp from './Components/LoginPage/LoginPage';
+import Cart from './Components/Cart/Cart';
 
 export const SearchContext = createContext();
 export const SearchBarContext = createContext();
@@ -25,11 +26,14 @@ function App() {
           <Router>
             <Navbar setSearchBar={setSearchBar}/>
               <Routes>
+                <Route path="*" element={<h1>404 Not Found</h1>}></Route>
                 <Route path='/' element={(search)?<SearchProduct searchTrigger={searchTrigger}/>:<Products/>}></Route>
-                <Route path="/:a" element={<ViewProduct/>}></Route>
+                <Route path="/view/:a" element={<ViewProduct/>}></Route>
                 <Route path="/addProduct" element={<AddProduct/>}></Route>
                 <Route path="/update/:id" element={<Updateproduct/>}></Route>
                 <Route path="/login" element={<LoginSignUp/>}></Route>
+                <Route path="/liked" element={<h1>Liked</h1>}></Route>
+                <Route path="/cart" element={<Cart/>}></Route>
               </Routes>
           </Router>
         </SearchTriggerContext.Provider>
